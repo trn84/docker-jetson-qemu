@@ -1,6 +1,6 @@
 # Creating a Cross-Compilation like process for Jetson TX2 (aarch64) using QEMU with Docker
 ### Easily build your applications in your CI/CD on x86 without needing an aarch64 build-farm
-### Medium Article: https://medium.com/@trn84/creating-a-cross-compilation-like-process-for-jetson-tx2-aarch64-using-qemu-with-docker-5cb38f6a65bc
+#### https://medium.com/@trn84/creating-a-cross-compilation-like-process-for-jetson-tx2-aarch64-using-qemu-with-docker-5cb38f6a65bc
 
 ## Background
 
