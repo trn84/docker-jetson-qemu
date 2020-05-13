@@ -105,7 +105,7 @@ Change the directory into the deviceQuery example. Execute make and let it compi
 
 When we execute the generated binary ./deviceQuery This will be the output:
 
-![Output execution ./deviceQuery](https://raw.githubusercontent.com/trn84/docker-jetson-qemu/master/flowgraph.png)
+![Output execution ./deviceQuery](https://raw.githubusercontent.com/trn84/docker-jetson-qemu/master/deviceQuery.png)
 
 This is not unexpected since, even though we are using virtualization for the build process, of course the actual hardware is not emulated (GPU, ISP, Vision).
 
