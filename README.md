@@ -40,30 +40,26 @@ Now hopefully everything went fine and we need to mount the image into our syste
 
 Then mount the raw image file:
 
-`sudo mount -o loop backup.im.raw ~/jetson-image-mount/`
+`sudo mount -o loop backup.img.raw ~/jetson-image-mount/`
 
 Now you can checkout the file system and see if all the files were cloned. In a next step we will create a tar archive from the mounted image.
 
 ## 3. Create tar.gz Archive
 
-It is highly recommended to create a tarball of the mounted image to be able to use it for docker. Usually, merely using the tar command on a folder will result in an unwanted primary root folder in the archive with the name of the folder. There are many approaches to circumvent this (see discussion https://stackoverflow.com/questions/939982/how-do-i-tar-a-directory-of-files-and-folders-without-including-the-directory-it/39530409#39530409) and none of which is fully satisfying. We are using the following command:
+It is highly recommended to create a tarball of the mounted image to be able to use it for docker. Usually, merely using the tar command on a folder will result in an unwanted primary root folder in the archive with the name of the folder. There are many approaches to circumvent this (see discussion https://stackoverflow.com/questions/939982/how-do-i-tar-a-directory-of-files-and-folders-without-including-the-directory-it/39530409#39530409) and none of which is fully satisfying. We are using the following commands:
 
-`cd jetson-image-mount/
-sudo tar -czvf ../jetson-image.tar.gz *
-cd ..`
+`mkdir ~/docker-build-context`  
+`cd jetson-image-mount && sudo tar -czvf ../docker-build-context/jetson-image.tar.gz * && cd ../docker-build-context`
 
 This is not ideal since the * operator will not consider hidden files apparently. On the other hand the . operator will create a folder called . as a first folder in the archive. Just keep this in mind if you have issues with missing hidden files.
 
 ## 4. Building a Docker Image from Scratch
 
-At this point you should have a tarball called jetson-image.tar.gz. We can now create a dock image from this file. Since we do not want to be in the same build context as the mount folders and .img and .img.raw files we should create another folder:
+At this point you should have a tarball called jetson-image.tar.gz. We can now create a dock image from this file. 
+Open up your favorite editor and paste into it the following:
 
-`mkdir ~/docker-build-context`
-
-Here we will move our .tar.gz file and create a Dockerfile with our commands. Open up your favorite editor and paste into it the following:
-
-`FROM scratch
-ADD jetson-image.tar.gz /
+`FROM scratch  
+ADD jetson-image.tar.gz /  
 CMD /bin/bash`
 
 That is all. We will start from scratch and add the archive as the root of the docker image. Save the file as Dockerfile and bow we will build the image from the same folder simply by:
