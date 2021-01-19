@@ -40,7 +40,7 @@ Now hopefully everything went fine and we need to mount the image into our syste
 
 Then mount the raw image file:
 
-`sudo mount -o loop backup.im.raw ~/jetson-image-mount/`
+`sudo mount -o loop backup.img.raw ~/jetson-image-mount/`
 
 Now you can checkout the file system and see if all the files were cloned. In a next step we will create a tar archive from the mounted image.
 
