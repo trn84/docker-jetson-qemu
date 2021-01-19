@@ -48,10 +48,8 @@ Now you can checkout the file system and see if all the files were cloned. In a 
 
 It is highly recommended to create a tarball of the mounted image to be able to use it for docker. Usually, merely using the tar command on a folder will result in an unwanted primary root folder in the archive with the name of the folder. There are many approaches to circumvent this (see discussion https://stackoverflow.com/questions/939982/how-do-i-tar-a-directory-of-files-and-folders-without-including-the-directory-it/39530409#39530409) and none of which is fully satisfying. We are using the following command:
 
-`cd jetson-image-mount/
-
-sudo tar -czvf ../jetson-image.tar.gz *
-
+`cd jetson-image-mount/  
+sudo tar -czvf ../jetson-image.tar.gz *  
 cd ..`
 
 This is not ideal since the * operator will not consider hidden files apparently. On the other hand the . operator will create a folder called . as a first folder in the archive. Just keep this in mind if you have issues with missing hidden files.
